@@ -1,0 +1,100 @@
+paths:
+  /login:
+    post:
+      tags:
+        - auth
+      description: Sign In to Coding Blog Website
+      operationId: sign-in
+      requestBody:
+        description: Sign In Information
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "aaa@gmail.com"
+                password:
+                  type: string
+                  example: "password"
+        required: true
+      responses:
+        "200":
+          description: Login Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: string
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      email:
+                        type: string
+                        example: "hoang@gmail.com"
+                      token:
+                        type: string
+                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzY0ZDM5NzUyYzY0NzE0Zjg5ZDQ5NSIsImlhdCI6MTY3MzY1MjYzOSwiZXhwIjoxNjcyNjUzOTM5fQ.1t0kE6dX7hYgZ4q6gqJt8IzY4w6H9V0"
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: "ok"
+        "404":
+          description: invalid Input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: string
+                    example: false
+                  status:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: "Cannot find resouces"
+
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: string
+                    example: false
+                  status:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: "Email or password is incorrect"
+
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: string
+                    example: false
+                  status:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: "Internal server error"

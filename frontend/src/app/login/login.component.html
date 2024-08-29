@@ -1,0 +1,51 @@
+<div class="wrapper">
+  <header>Login Form</header>
+  <form #formData="ngForm" (ngSubmit)="onSubmit(formData.value)">
+    <div class="field email" [class.error]="fields.includes('email')">
+      <div class="input-area">
+        <input type="text" placeholder="Email Address" name="email" ngModel />
+        <i class="icon bx bxs-envelope"></i>
+        <fa-icon
+          class="error error-icon"
+          [icon]="faCircleExclamation"
+        ></fa-icon>
+      </div>
+      <div class="error error-txt" *ngFor="let error of errors">
+        {{ error.field === "email" ? error.message : "" }}
+      </div>
+    </div>
+    <div class="field password" [class.error]="fields.includes('password')">
+      <div class="input-area">
+        <input
+          placeholder="Password"
+          name="password"
+          ngModel
+          [type]="isShowPassword ? 'text' : 'password'"
+        />
+        <i class="icon bx bxs-lock-alt"></i>
+        <fa-icon
+          class="eye-icon cursor-pointer"
+          [icon]="faEyeSlash"
+          [class.d-none]="isShowPassword"
+          (click)="onShowPassword()"
+        ></fa-icon>
+        <fa-icon
+          class="eye-icon cursor-pointer"
+          [icon]="faEye"
+          [class.d-none]="!isShowPassword"
+          (click)="onShowPassword()"
+        ></fa-icon>
+      </div>
+      <div class="error error-txt" *ngFor="let error of errors">
+        {{ error.field === "password" ? error.message : "" }}
+      </div>
+    </div>
+    <div class="pass-txt">
+      <a href="javascript:void(0)">Forgot password?</a>
+    </div>
+    <input type="submit" value="Login" />
+  </form>
+  <div class="sign-txt">
+    Not yet member? <a href="javascript:void(0)">Signup now</a>
+  </div>
+</div>

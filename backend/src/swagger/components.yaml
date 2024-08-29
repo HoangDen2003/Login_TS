@@ -1,0 +1,14 @@
+component:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        email:
+          type: string
+          example: hoang@gmail.com
+        password:
+          type: string
+          example: password
